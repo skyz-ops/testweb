@@ -1,0 +1,2114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyZhee Corporation | VPS VDS RDP BulletProof</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00ff88;
+            --primary-dark: #00cc6a;
+            --secondary: #00ccff;
+            --secondary-dark: #0099cc;
+            --dark-bg: #0a0a1a;
+            --card-bg: rgba(15, 20, 40, 0.95);
+            --card-border: rgba(0, 255, 136, 0.2);
+            --text-light: #e0e0ff;
+            --text-muted: #8a8ab5;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --gradient-dark: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            --shadow-hover: 0 15px 40px rgba(0, 255, 136, 0.25);
+            --transition: all 0.3s ease;
+            --success: #00ff88;
+            --warning: #ffaa00;
+            --danger: #ff5555;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a1a, #151530, #0a0a1a);
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 0;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 900;
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+            transition: var(--transition);
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(10deg) scale(1.05);
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 900;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+        }
+
+        .tagline {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 5px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .ceo {
+            font-size: 16px;
+            color: var(--primary);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+
+        .ceo::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        .time {
+            font-size: 15px;
+            color: var(--text-muted);
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 136, 0.1);
+        }
+
+        .social {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            justify-content: flex-end;
+        }
+
+        .telegram-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 255, 136, 0.1);
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--primary);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .telegram-link:hover {
+            background: rgba(0, 255, 136, 0.2);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
+        }
+
+        /* Navigation */
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 40px 0;
+            padding: 10px;
+            background: rgba(10, 15, 30, 0.8);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            backdrop-filter: blur(10px);
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            position: relative;
+            padding: 14px 28px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            cursor: pointer;
+            text-align: center;
+            min-width: 140px;
+            overflow: hidden;
+            color: var(--text-light);
+            font-size: 15px;
+        }
+
+        .nav-item:hover {
+            background: rgba(0, 255, 136, 0.1);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .nav-item.active {
+            background: rgba(0, 255, 136, 0.15);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient);
+        }
+
+        .nav-item i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        /* Main Content */
+        .main-content {
+            min-height: 400px;
+            position: relative;
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .main-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            position: relative;
+        }
+
+        .main-title::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .main-title h1 {
+            font-size: 52px;
+            font-weight: 900;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .main-title p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 35px;
+            border: 1px solid var(--card-border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 36px;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: rgba(0, 255, 136, 0.2);
+        }
+
+        .service-title {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .service-description {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .service-features li {
+            padding: 10px 0;
+            color: #d0d0ff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+        }
+
+        .service-features li:last-child {
+            border-bottom: none;
+        }
+
+        .service-features li i {
+            color: var(--primary);
+            margin-right: 12px;
+            width: 20px;
+            font-size: 14px;
+        }
+
+        .service-price {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .service-price span {
+            font-size: 16px;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-left: 5px;
+        }
+
+        .service-button {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: var(--gradient);
+            color: #000;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .service-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
+            background: var(--gradient-dark);
+        }
+
+        /* VPS Selection Section */
+        .vps-section {
+            background: rgba(10, 15, 30, 0.8);
+            border-radius: var(--radius-lg);
+            padding: 50px;
+            margin: 80px 0;
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vps-section::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.1), transparent 70%);
+            z-index: 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            color: #ffffff;
+            background: linear-gradient(90deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* VPS Selection System */
+        .vps-selection {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .vps-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .vps-option {
+            background: var(--card-bg);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .vps-option:hover {
+            border-color: rgba(0, 255, 136, 0.3);
+            transform: translateX(5px);
+        }
+
+        .vps-option.selected {
+            border-color: var(--primary);
+            background: rgba(0, 255, 136, 0.05);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.1);
+        }
+
+        .vps-option.selected::before {
+            content: '';
+            position: absolute;
+            left: -2px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 70%;
+            background: var(--primary);
+            border-radius: 0 2px 2px 0;
+        }
+
+        .option-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .option-price {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .option-price span {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .option-specs {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .option-specs li {
+            padding: 5px 0;
+            color: var(--text-muted);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        .option-specs li i {
+            color: var(--primary);
+            margin-right: 8px;
+            font-size: 12px;
+            width: 15px;
+        }
+
+        .vps-details {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            border: 1px solid var(--card-border);
+        }
+
+        .details-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .selected-plan-name {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .selected-plan-price {
+            font-size: 36px;
+            font-weight: 900;
+            color: #ffffff;
+        }
+
+        .selected-plan-price span {
+            font-size: 18px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .details-content {
+            margin-bottom: 30px;
+        }
+
+        .details-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .details-specs {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .details-specs li {
+            padding: 12px 0;
+            color: #d0d0ff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .details-specs li:last-child {
+            border-bottom: none;
+        }
+
+        .spec-name {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .spec-name i {
+            color: var(--primary);
+            width: 20px;
+        }
+
+        .spec-value {
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .order-form {
+            margin-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-sm);
+            color: var(--text-light);
+            font-size: 15px;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+        }
+
+        .form-control option {
+            background: var(--dark-bg);
+            color: var(--text-light);
+        }
+
+        .order-button {
+            width: 100%;
+            padding: 18px;
+            background: var(--gradient);
+            color: #000;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 800;
+            font-size: 18px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        .order-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.3);
+            background: var(--gradient-dark);
+        }
+
+        .order-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Coming Soon / Not Available Section */
+        .coming-soon {
+            text-align: center;
+            padding: 100px 20px;
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            border: 2px dashed rgba(255, 255, 255, 0.1);
+            margin: 40px 0;
+        }
+
+        .coming-soon-icon {
+            font-size: 80px;
+            color: rgba(255, 255, 255, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .coming-soon h2 {
+            font-size: 36px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .coming-soon p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .progress-container {
+            max-width: 400px;
+            margin: 40px auto;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 3px;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: var(--gradient);
+            border-radius: 20px;
+            width: 0%;
+            animation: progressAnimation 2s ease-in-out infinite alternate;
+        }
+
+        .notify-button {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 15px 30px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notify-button:hover {
+            background: rgba(0, 255, 136, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.2);
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin: 70px 0;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 30px 25px;
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .feature i {
+            font-size: 42px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .feature:hover i {
+            transform: scale(1.2);
+        }
+
+        .feature h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .feature p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            border: 1px solid var(--card-border);
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .modal-header i {
+            font-size: 60px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .modal-header p {
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        .modal-body {
+            margin-bottom: 30px;
+        }
+
+        .order-summary {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-label {
+            color: var(--text-muted);
+        }
+
+        .summary-value {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .summary-total {
+            font-size: 20px;
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .modal-footer {
+            text-align: center;
+        }
+
+        .whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: #000;
+            padding: 16px 30px;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 16px;
+            transition: var(--transition);
+            margin-bottom: 15px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+            background: #1da851;
+        }
+
+        .modal-close {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            font-weight: 600;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 100px;
+            padding-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .copyright::before, .copyright::after {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: rgba(0, 255, 136, 0.3);
+        }
+
+        .disclaimer {
+            background: rgba(255, 50, 50, 0.1);
+            border: 1px solid rgba(255, 50, 50, 0.3);
+            border-radius: var(--radius-md);
+            padding: 25px;
+            margin-top: 40px;
+            color: #ff8a8a;
+            font-size: 15px;
+            line-height: 1.7;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .disclaimer::before {
+            content: '⚠️';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            opacity: 0.3;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes progressAnimation {
+            from { width: 30%; }
+            to { width: 70%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .main-title h1 {
+                font-size: 42px;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            
+            .vps-section {
+                padding: 40px 30px;
+            }
+            
+            .vps-selection {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .vps-options {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 15px;
+            }
+            
+            .vps-option:hover {
+                transform: translateY(-5px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+                gap: 25px;
+            }
+            
+            .contact-info {
+                text-align: center;
+                align-items: center;
+            }
+            
+            .ceo {
+                justify-content: center;
+            }
+            
+            .social {
+                justify-content: center;
+            }
+            
+            .nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-item {
+                min-width: 100%;
+            }
+            
+            .main-title h1 {
+                font-size: 36px;
+            }
+            
+            .section-header h2 {
+                font-size: 32px;
+            }
+            
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-links {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .service-card, .vps-details, .feature {
+                padding: 25px 20px;
+            }
+            
+            .main-title h1 {
+                font-size: 32px;
+            }
+            
+            .section-header h2 {
+                font-size: 32px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo" onclick="showSection('home')">
+                <div class="logo-icon">SC</div>
+                <div>
+                    <div class="logo-text">SkyZhee Corporation</div>
+                    <div class="tagline">VPS • VDS • RDP • BulletProof</div>
+                </div>
+            </div>
+            <div class="contact-info">
+                <div class="ceo">CEO: SkyZhee Creator</div>
+                <div class="time" id="currentTime">00:00:00/SkyZhee</div>
+                <div class="social">
+                    <a href="https://t.me/SkyzXz" class="telegram-link" target="_blank">
+                        <i class="fab fa-telegram"></i>
+                        @SkyzXz
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav">
+            <div class="nav-item active" data-section="home">
+                <i class="fas fa-home"></i> Beranda
+            </div>
+            <div class="nav-item" data-section="vps">
+                <i class="fas fa-server"></i> VPS
+            </div>
+            <div class="nav-item" data-section="vds">
+                <i class="fas fa-database"></i> VDS
+            </div>
+            <div class="nav-item" data-section="rdp">
+                <i class="fas fa-desktop"></i> RDP
+            </div>
+            <div class="nav-item" data-section="pentest">
+                <i class="fas fa-shield-alt"></i> Pentest
+            </div>
+            <div class="nav-item" data-section="support">
+                <i class="fas fa-headset"></i> Support
+            </div>
+        </div>
+
+        <!-- Main Content Sections -->
+        <div class="main-content">
+            
+            <!-- Home Section -->
+            <div class="content-section active" id="home-section">
+                <div class="main-title">
+                    <h1>Layanan Hosting Premium</h1>
+                    <p>VPS, VDS, RDP, dan layanan Pentest dengan BulletProof Hosting & keamanan maksimal untuk proyek Anda.</p>
+                </div>
+
+                <!-- Services Grid -->
+                <div class="services-grid">
+                    <!-- VPS -->
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3 class="service-title">VPS (Virtual Private Server)</h3>
+                        <p class="service-description">Server virtual berkinerja tinggi dengan akses root penuh, perlindungan DDoS tingkat enterprise, dan hosting anonim untuk privasi maksimal.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check-circle"></i> Akses Root Penuh</li>
+                            <li><i class="fas fa-check-circle"></i> Dilindungi DDoS</li>
+                            <li><i class="fas fa-check-circle"></i> Uptime 99.9% SLA</li>
+                            <li><i class="fas fa-check-circle"></i> Setup Anonim</li>
+                            <li><i class="fas fa-check-circle"></i> Lokasi Global</li>
+                        </ul>
+                        <div class="service-price">Rp 200.000<span>/bulan</span></div>
+                        <button class="service-button" onclick="showSection('vps')">
+                            Lihat Paket <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- VDS -->
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 class="service-title">VDS (Virtual Dedicated Server)</h3>
+                        <p class="service-description">Sumber daya khusus dengan performa terjamin, lingkungan terisolasi penuh, dan dukungan premium 24/7 untuk aplikasi mission-critical.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check-circle"></i> Sumber Daya Khusus</li>
+                            <li><i class="fas fa-check-circle"></i> Lingkungan Terisolasi</li>
+                            <li><i class="fas fa-check-circle"></i> Dukungan Premium</li>
+                            <li><i class="fas fa-check-circle"></i> Dukungan ISO Custom</li>
+                            <li><i class="fas fa-check-circle"></i> Hardware RAID</li>
+                        </ul>
+                        <div class="service-price">Rp 600.000<span>/bulan</span></div>
+                        <button class="service-button" onclick="showComingSoon('VDS')">
+                            Segera Hadir <i class="fas fa-clock"></i>
+                        </button>
+                    </div>
+
+                    <!-- RDP -->
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <h3 class="service-title">RDP (Remote Desktop)</h3>
+                        <p class="service-description">Remote desktop Windows dengan koneksi berkecepatan tinggi, tools pre-installed, dan akses terenkripsi aman dari mana saja.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check-circle"></i> Windows Server 2022</li>
+                            <li><i class="fas fa-check-circle"></i> Tools Pre-installed</li>
+                            <li><i class="fas fa-check-circle"></i> Koneksi 1Gbps</li>
+                            <li><i class="fas fa-check-circle"></i> Multi User</li>
+                            <li><i class="fas fa-check-circle"></i> Akses 24/7</li>
+                        </ul>
+                        <div class="service-price">Rp 350.000<span>/bulan</span></div>
+                        <button class="service-button" onclick="showComingSoon('RDP')">
+                            Segera Hadir <i class="fas fa-clock"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Features -->
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>BulletProof Hosting</h3>
+                        <p>DMCA ignored, hosting anonim dengan perlindungan privasi maksimal</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-bolt"></i>
+                        <h3>Kinerja Tinggi</h3>
+                        <p>Storage NVMe SSD, jaringan 10Gbps+, hardware generasi terbaru</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-globe"></i>
+                        <h3>Lokasi Global</h3>
+                        <p>Lokasi US, EU, Asia, Russia dengan koneksi low latency</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-lock"></i>
+                        <h3>Enkripsi Penuh</h3>
+                        <p>Enkripsi military-grade end-to-end untuk semua komunikasi</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-user-secret"></i>
+                        <h3>Kebijakan No Logs</h3>
+                        <p>Kebijakan strict no-logs untuk privasi aktivitas Anda</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-headset"></i>
+                        <h3>Dukungan 24/7</h3>
+                        <p>Dukungan teknis 24/7 via Telegram dan tiket</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VPS Section -->
+            <div class="content-section" id="vps-section">
+                <div class="main-title">
+                    <h1>Paket VPS SkyZhee</h1>
+                    <p>Pilih paket VPS sesuai kebutuhan dengan harga terjangkau dan fitur lengkap</p>
+                </div>
+
+                <!-- VPS Selection Section -->
+                <div class="vps-section">
+                    <div class="section-header">
+                        <h2>VPS EKONOMIS</h2>
+                        <p>High-performance virtual servers dengan spesifikasi terbaik</p>
+                    </div>
+                    
+                    <div class="vps-selection">
+                        <!-- VPS Options -->
+                        <div class="vps-options">
+                            <div class="vps-option selected" data-plan="basic">
+                                <div class="option-name">BASIC</div>
+                                <div class="option-price">Rp 75.000<span>/bulan</span></div>
+                                <ul class="option-specs">
+                                    <li><i class="fas fa-microchip"></i> 1 vCPU Core</li>
+                                    <li><i class="fas fa-memory"></i> 2GB RAM</li>
+                                    <li><i class="fas fa-hdd"></i> 30GB SSD</li>
+                                    <li><i class="fas fa-network-wired"></i> 1TB Bandwidth</li>
+                                    <li><i class="fas fa-globe"></i> 1 IPv4</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="vps-option" data-plan="pro">
+                                <div class="option-name">PRO</div>
+                                <div class="option-price">Rp 200.000<span>/bulan</span></div>
+                                <ul class="option-specs">
+                                    <li><i class="fas fa-microchip"></i> 2 vCPU Cores</li>
+                                    <li><i class="fas fa-memory"></i> 4GB RAM</li>
+                                    <li><i class="fas fa-hdd"></i> 80GB SSD</li>
+                                    <li><i class="fas fa-network-wired"></i> 2TB Bandwidth</li>
+                                    <li><i class="fas fa-globe"></i> 2 IPv4</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="vps-option" data-plan="premium">
+                                <div class="option-name">PREMIUM</div>
+                                <div class="option-price">Rp 400.000<span>/bulan</span></div>
+                                <ul class="option-specs">
+                                    <li><i class="fas fa-microchip"></i> 4 vCPU Cores</li>
+                                    <li><i class="fas fa-memory"></i> 8GB RAM</li>
+                                    <li><i class="fas fa-hdd"></i> 160GB SSD</li>
+                                    <li><i class="fas fa-network-wired"></i> 4TB Bandwidth</li>
+                                    <li><i class="fas fa-globe"></i> 3 IPv4</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="vps-option" data-plan="enterprise">
+                                <div class="option-name">ENTERPRISE</div>
+                                <div class="option-price">Rp 800.000<span>/bulan</span></div>
+                                <ul class="option-specs">
+                                    <li><i class="fas fa-microchip"></i> 8 vCPU Cores</li>
+                                    <li><i class="fas fa-memory"></i> 16GB RAM</li>
+                                    <li><i class="fas fa-hdd"></i> 320GB SSD</li>
+                                    <li><i class="fas fa-network-wired"></i> 8TB Bandwidth</li>
+                                    <li><i class="fas fa-globe"></i> 5 IPv4</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- VPS Details & Order Form -->
+                        <div class="vps-details">
+                            <div class="details-header">
+                                <div class="selected-plan-name">VPS BASIC</div>
+                                <div class="selected-plan-price">Rp 75.000<span>/bulan</span></div>
+                            </div>
+                            
+                            <div class="details-content">
+                                <h3 class="details-title">Spesifikasi Detail</h3>
+                                <ul class="details-specs">
+                                    <li>
+                                        <div class="spec-name">
+                                            <i class="fas fa-microchip"></i>
+                                            <span>CPU</span>
+                                        </div>
+                                        <div class="spec-value">1 vCPU Core</div>
+                                    </li>
+                                    <li>
+                                        <div class="spec-name">
+                                            <i class="fas fa-memory"></i>
+                                            <span>RAM</span>
+                                        </div>
+                                        <div class="spec-value">2GB DDR4</div>
+                                    </li>
+                                    <li>
+                                        <div class="spec-name">
+                                            <i class="fas fa-hdd"></i>
+                                            <span>Storage</span>
+                                        </div>
+                                        <div class="spec-value">30GB NVMe SSD</div>
+                                    </li>
+                                    <li>
+                                        <div class="spec-name">
+                                            <i class="fas fa-network-wired"></i>
+                                            <span>Bandwidth</span>
+                                        </div>
+                                        <div class="spec-value">1TB @ 1Gbps</div>
+                                    </li>
+                                    <li>
+                                        <div class="spec-name">
+                                            <i class="fas fa-globe"></i>
+                                            <span>IP Address</span>
+                                        </div>
+                                        <div class="spec-value">1 IPv4 + IPv6</div>
+                                    </li>
+                                    <li>
+                                        <div class="spec-name">
+                                            <i class="fas fa-shield-alt"></i>
+                                            <span>DDoS Protection</span>
+                                        </div>
+                                        <div class="spec-value">10Gbps</div>
+                                    </li>
+                                    <li>
+                                        <div class="spec-name">
+                                            <i class="fas fa-sync-alt"></i>
+                                            <span>Uptime</span>
+                                        </div>
+                                        <div class="spec-value">99.9% SLA</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="order-form">
+                                <h3 class="details-title">Form Pemesanan</h3>
+                                
+                                <div class="form-group">
+                                    <label for="duration">Durasi Sewa:</label>
+                                    <select id="duration" class="form-control">
+                                        <option value="1">1 Bulan - Rp 75.000</option>
+                                        <option value="3">3 Bulan - Rp 210.000</option>
+                                        <option value="6">6 Bulan - Rp 400.000</option>
+                                        <option value="12">12 Bulan - Rp 750.000</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="location">Lokasi Server:</label>
+                                    <select id="location" class="form-control">
+                                        <option value="singapore">Singapore</option>
+                                        <option value="japan">Japan</option>
+                                        <option value="germany">Germany</option>
+                                        <option value="usa">USA (Los Angeles)</option>
+                                        <option value="indonesia">Indonesia</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="os">Operating System:</label>
+                                    <select id="os" class="form-control">
+                                        <option value="ubuntu">Ubuntu 22.04 LTS</option>
+                                        <option value="debian">Debian 11</option>
+                                        <option value="centos">CentOS 8</option>
+                                        <option value="windows">Windows Server 2022</option>
+                                        <option value="almalinux">AlmaLinux 9</option>
+                                    </select>
+                                </div>
+                                
+                                <button id="orderButton" class="order-button" onclick="processOrder()">
+                                    <i class="fas fa-shopping-cart"></i> PESAN SEKARANG
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VDS Section (Coming Soon) -->
+            <div class="content-section" id="vds-section">
+                <div class="main-title">
+                    <h1>Virtual Dedicated Server</h1>
+                    <p>Layanan VDS dengan performa maksimal dan sumber daya dedicated</p>
+                </div>
+
+                <div class="coming-soon float">
+                    <div class="coming-soon-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h2>Segera Hadir!</h2>
+                    <p>Layanan VDS (Virtual Dedicated Server) sedang dalam tahap pengembangan. Kami sedang menyiapkan infrastruktur terbaik dengan dedicated resources dan performa maksimal untuk kebutuhan enterprise Anda.</p>
+                    
+                    <div class="progress-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                    
+                    <p>Estimasi Rilis: <strong>Januari 2026</strong></p>
+                    
+                    <button class="notify-button" onclick="notifyMe('VDS')">
+                        <i class="fas fa-bell"></i> Beritahu Saya Saat Sudah Tersedia
+                    </button>
+                </div>
+            </div>
+
+            <!-- RDP Section (Coming Soon) -->
+            <div class="content-section" id="rdp-section">
+                <div class="main-title">
+                    <h1>Remote Desktop Protocol</h1>
+                    <p>Akses desktop remote dengan kecepatan tinggi dan keamanan maksimal</p>
+                </div>
+
+                <div class="coming-soon float">
+                    <div class="coming-soon-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h2>Dalam Pengembangan</h2>
+                    <p>Layanan RDP (Remote Desktop Protocol) kami sedang dalam tahap finalisasi. Kami akan menyediakan Windows Server terbaru dengan koneksi 1Gbps dan berbagai tools pre-installed untuk produktivitas maksimal.</p>
+                    
+                    <div class="progress-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                    
+                    <p>Estimasi Rilis: <strong>Mei 2024</strong></p>
+                    
+                    <button class="notify-button" onclick="notifyMe('RDP')">
+                        <i class="fas fa-bell"></i> Beritahu Saya Saat Sudah Tersedia
+                    </button>
+                </div>
+            </div>
+
+            <!-- Pentest Section (Coming Soon) -->
+            <div class="content-section" id="pentest-section">
+                <div class="main-title">
+                    <h1>Penetration Testing</h1>
+                    <p>Layanan keamanan profesional untuk menguji sistem Anda</p>
+                </div>
+
+                <div class="coming-soon float">
+                    <div class="coming-soon-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h2>Coming Soon</h2>
+                    <p>Layanan Penetration Testing Professional sedang disiapkan dengan tim ahli keamanan bersertifikat. Kami akan menyediakan layanan pentest komprehensif dengan laporan detail dan rekomendasi perbaikan.</p>
+                    
+                    <div class="progress-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                    
+                    <p>Estimasi Rilis: <strong>Juni 2024</strong></p>
+                    
+                    <button class="notify-button" onclick="notifyMe('Pentest')">
+                        <i class="fas fa-bell"></i> Beritahu Saya Saat Sudah Tersedia
+                    </button>
+                </div>
+            </div>
+
+            <!-- Support Section -->
+            <div class="content-section" id="support-section">
+                <div class="main-title">
+                    <h1>Dukungan Teknis</h1>
+                    <p>Tim support kami siap membantu Anda 24/7</p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <h3 class="service-title">Support via Telegram</h3>
+                        <p class="service-description">Dapatkan bantuan teknis langsung melalui Telegram dengan response time cepat dari tim support kami yang berpengalaman.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check-circle"></i> Response Time < 15 menit</li>
+                            <li><i class="fas fa-check-circle"></i> Support 24/7</li>
+                            <li><i class="fas fa-check-circle"></i> Teknisi Berpengalaman</li>
+                            <li><i class="fas fa-check-circle"></i> Solusi Langsung</li>
+                            <li><i class="fas fa-check-circle"></i> Update Real-time</li>
+                        </ul>
+                        <a href="https://t.me/SkyzXz" class="service-button" target="_blank">
+                            <i class="fab fa-telegram"></i> Hubungi via Telegram
+                        </a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h3 class="service-title">WhatsApp Support</h3>
+                        <p class="service-description">Untuk konsultasi dan informasi lebih lanjut, Anda dapat menghubungi kami melalui WhatsApp dengan jam kerja yang fleksibel.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check-circle"></i> Konsultasi Gratis</li>
+                            <li><i class="fas fa-check-circle"></i> Informasi Lengkap</li>
+                            <li><i class="fas fa-check-circle"></i> Bantuan Setup</li>
+                            <li><i class="fas fa-check-circle"></i> Troubleshooting</li>
+                            <li><i class="fas fa-check-circle"></i> Support Teknis</li>
+                        </ul>
+                        <a href="https://wa.me/6281234567890" class="service-button" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Hubungi via WhatsApp
+                        </a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-ticket-alt"></i>
+                        </div>
+                        <h3 class="service-title">Ticket System</h3>
+                        <p class="service-description">Untuk masalah teknis yang kompleks, gunakan sistem tiket kami yang akan ditangani secara prioritas oleh tim teknis.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check-circle"></i> Penanganan Prioritas</li>
+                            <li><i class="fas fa-check-circle"></i> Tracking Progress</li>
+                            <li><i class="fas fa-check-circle"></i> Dokumentasi Lengkap</li>
+                            <li><i class="fas fa-check-circle"></i> Solusi Komprehensif</li>
+                            <li><i class="fas fa-check-circle"></i> Follow-up Terjamin</li>
+                        </ul>
+                        <button class="service-button" onclick="openTicketSystem()">
+                            <i class="fas fa-ticket-alt"></i> Buat Tiket Support
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-links">
+                <a href="#" onclick="showSection('home')">Beranda</a>
+                <a href="#" onclick="showSection('vps')">VPS</a>
+                <a href="#" onclick="showSection('vds')">VDS</a>
+                <a href="#" onclick="showSection('rdp')">RDP</a>
+                <a href="#" onclick="showSection('pentest')">Pentest</a>
+                <a href="#" onclick="showSection('support')">Support</a>
+            </div>
+            <div class="copyright">
+                © 2024 SkyZhee Corporation. Hak cipta dilindungi.
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Confirmation Modal -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-check-circle"></i>
+                <h2>Pesanan Berhasil!</h2>
+                <p>Detail pesanan Anda telah dibuat. Silakan hubungi kami untuk melanjutkan pembayaran.</p>
+            </div>
+            
+            <div class="modal-body">
+                <div class="order-summary">
+                    <div class="summary-item">
+                        <span class="summary-label">Paket:</span>
+                        <span class="summary-value" id="modalPlan">VPS BASIC</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Durasi:</span>
+                        <span class="summary-value" id="modalDuration">1 Bulan</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Lokasi:</span>
+                        <span class="summary-value" id="modalLocation">Singapore</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">OS:</span>
+                        <span class="summary-value" id="modalOS">Ubuntu 22.04 LTS</span>
+                    </div>
+                    <div class="summary-item summary-total">
+                        <span class="summary-label">Total:</span>
+                        <span class="summary-value" id="modalPrice">Rp 75.000</span>
+                    </div>
+                </div>
+                
+                <p style="text-align: center; color: var(--text-muted); font-size: 14px; margin-top: 20px;">
+                    Order ID: <strong id="modalOrderId">XC-2026-001</strong>
+                </p>
+            </div>
+            
+            <div class="modal-footer">
+                <a href="https://wa.me/6281234567890?text=Halo%20eXCe%20Corporation,%20saya%20ingin%20memesan%20VPS%20dengan%20detail%20sebagai%20berikut:" class="whatsapp-button" target="_blank" id="whatsappLink">
+                    <i class="fab fa-whatsapp"></i> Hubungi via WhatsApp
+                </a>
+                <button class="modal-close" onclick="closeModal()">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Coming Soon Modal -->
+    <div class="modal" id="comingSoonModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-clock"></i>
+                <h2 id="comingSoonTitle">Layanan Segera Hadir!</h2>
+                <p id="comingSoonMessage">Layanan ini sedang dalam tahap pengembangan dan akan segera tersedia.</p>
+            </div>
+            
+            <div class="modal-body">
+                <div style="text-align: center;">
+                    <div style="font-size: 60px; margin: 30px 0; color: var(--primary);">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">
+                        Kami sedang bekerja keras untuk menyiapkan layanan terbaik untuk Anda.
+                    </p>
+                    
+                    <div class="progress-container" style="max-width: 100%;">
+                        <div class="progress-bar"></div>
+                    </div>
+                    
+                    <p style="margin-top: 30px; color: var(--text-light);">
+                        Estimasi waktu rilis: <strong id="comingSoonEta">Januari 2026</strong>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="notify-button" onclick="notifyMeModal()" style="width: 100%;">
+                    <i class="fas fa-bell"></i> Beritahu Saya Saat Sudah Tersedia
+                </button>
+                <button class="modal-close" onclick="closeComingSoonModal()">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data VPS Plans
+        const vpsPlans = {
+            basic: {
+                name: "VPS BASIC",
+                price: 75000,
+                specs: {
+                    cpu: "1 vCPU Core",
+                    ram: "2GB DDR4",
+                    storage: "30GB NVMe SSD",
+                    bandwidth: "1TB @ 1Gbps",
+                    ip: "1 IPv4 + IPv6",
+                    ddos: "10Gbps",
+                    uptime: "99.9% SLA"
+                }
+            },
+            pro: {
+                name: "VPS PRO",
+                price: 200000,
+                specs: {
+                    cpu: "2 vCPU Cores",
+                    ram: "4GB DDR4",
+                    storage: "80GB NVMe SSD",
+                    bandwidth: "2TB @ 1Gbps",
+                    ip: "2 IPv4 + IPv6",
+                    ddos: "20Gbps",
+                    uptime: "99.9% SLA"
+                }
+            },
+            premium: {
+                name: "VPS PREMIUM",
+                price: 400000,
+                specs: {
+                    cpu: "4 vCPU Cores",
+                    ram: "8GB DDR4",
+                    storage: "160GB NVMe SSD",
+                    bandwidth: "4TB @ 1Gbps",
+                    ip: "3 IPv4 + IPv6",
+                    ddos: "30Gbps",
+                    uptime: "99.95% SLA"
+                }
+            },
+            enterprise: {
+                name: "VPS ENTERPRISE",
+                price: 800000,
+                specs: {
+                    cpu: "8 vCPU Cores",
+                    ram: "16GB DDR4",
+                    storage: "320GB NVMe SSD",
+                    bandwidth: "8TB @ 1Gbps",
+                    ip: "5 IPv4 + IPv6",
+                    ddos: "50Gbps",
+                    uptime: "99.95% SLA"
+                }
+            }
+        };
+
+        // Data Coming Soon
+        const comingSoonData = {
+            'VDS': {
+                title: 'Virtual Dedicated Server',
+                message: 'Layanan VDS dengan dedicated resources dan performa maksimal untuk kebutuhan enterprise.',
+                eta: 'Januari 2026'
+            },
+            'RDP': {
+                title: 'Remote Desktop Protocol',
+                message: 'Akses desktop remote dengan Windows Server terbaru dan koneksi 1Gbps.',
+                eta: 'Januari 2026'
+            },
+            'Pentest': {
+                title: 'Penetration Testing',
+                message: 'Layanan keamanan profesional dengan tim ahli bersertifikat.',
+                eta: 'Januari 2026'
+            }
+        };
+
+        // Current selected plan
+        let selectedPlan = 'basic';
+        let selectedService = null;
+        let currentComingSoonService = '';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTime();
+            updateVPSDetails();
+            setupVPSOptions();
+            setupNavigation();
+        });
+
+        // Show/Hide Sections
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId + '-section').classList.add('active');
+            
+            // Update navigation
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.dataset.section === sectionId) {
+                    item.classList.add('active');
+                }
+            });
+            
+            // If VPS section, update details
+            if (sectionId === 'vps') {
+                updateVPSDetails();
+                updateDurationOptions();
+            }
+            
+            // Scroll to top of content
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Setup VPS Options Selection
+        function setupVPSOptions() {
+            const options = document.querySelectorAll('.vps-option');
+            options.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options
+                    options.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    
+                    // Update selected plan
+                    selectedPlan = this.dataset.plan;
+                    
+                    // Update details
+                    updateVPSDetails();
+                    
+                    // Update duration options
+                    updateDurationOptions();
+                });
+            });
+        }
+
+        // Update VPS Details based on selected plan
+        function updateVPSDetails() {
+            const plan = vpsPlans[selectedPlan];
+            const detailsSection = document.querySelector('.vps-details');
+            
+            // Update plan name and price
+            detailsSection.querySelector('.selected-plan-name').textContent = plan.name;
+            detailsSection.querySelector('.selected-plan-price').innerHTML = 
+                `Rp ${formatRupiah(plan.price)}<span>/bulan</span>`;
+            
+            // Update specifications
+            const specs = detailsSection.querySelectorAll('.details-specs li');
+            specs[0].querySelector('.spec-value').textContent = plan.specs.cpu;
+            specs[1].querySelector('.spec-value').textContent = plan.specs.ram;
+            specs[2].querySelector('.spec-value').textContent = plan.specs.storage;
+            specs[3].querySelector('.spec-value').textContent = plan.specs.bandwidth;
+            specs[4].querySelector('.spec-value').textContent = plan.specs.ip;
+            specs[5].querySelector('.spec-value').textContent = plan.specs.ddos;
+            specs[6].querySelector('.spec-value').textContent = plan.specs.uptime;
+        }
+
+        // Update duration options based on selected plan
+        function updateDurationOptions() {
+            const plan = vpsPlans[selectedPlan];
+            const durationSelect = document.getElementById('duration');
+            
+            // Clear existing options
+            durationSelect.innerHTML = '';
+            
+            // Add new options
+            const durations = [
+                { months: 1, discount: 0 },
+                { months: 3, discount: 0.07 },
+                { months: 6, discount: 0.11 },
+                { months: 12, discount: 0.17 }
+            ];
+            
+            durations.forEach(duration => {
+                const totalPrice = Math.floor(plan.price * duration.months * (1 - duration.discount));
+                const option = document.createElement('option');
+                option.value = duration.months;
+                option.textContent = `${duration.months} Bulan - Rp ${formatRupiah(totalPrice)}`;
+                durationSelect.appendChild(option);
+            });
+        }
+
+        // Process Order
+        function processOrder() {
+            const plan = vpsPlans[selectedPlan];
+            const duration = document.getElementById('duration').value;
+            const location = document.getElementById('location').options[document.getElementById('location').selectedIndex].text;
+            const os = document.getElementById('os').options[document.getElementById('os').selectedIndex].text;
+            
+            // Calculate total price
+            let totalPrice = plan.price * parseInt(duration);
+            
+            // Apply discount based on duration
+            const discountRates = {1: 0, 3: 0.07, 6: 0.11, 12: 0.17};
+            const discount = discountRates[duration] || 0;
+            totalPrice = Math.floor(totalPrice * (1 - discount));
+            
+            // Generate order ID
+            const orderId = 'XC-' + new Date().getFullYear() + '-' + 
+                          String(Math.floor(Math.random() * 10000)).padStart(4, '0');
+            
+            // Update modal content
+            document.getElementById('modalPlan').textContent = plan.name;
+            document.getElementById('modalDuration').textContent = `${duration} Bulan`;
+            document.getElementById('modalLocation').textContent = location;
+            document.getElementById('modalOS').textContent = os;
+            document.getElementById('modalPrice').textContent = `Rp ${formatRupiah(totalPrice)}`;
+            document.getElementById('modalOrderId').textContent = orderId;
+            
+            // Update WhatsApp link
+            const whatsappMessage = `Halo SkyZhee Corporation, saya ingin memesan ${plan.name} dengan detail sebagai berikut:%0A%0A` +
+                                  `Order ID: ${orderId}%0A` +
+                                  `Paket: ${plan.name}%0A` +
+                                  `Durasi: ${duration} Bulan%0A` +
+                                  `Lokasi: ${location}%0A` +
+                                  `OS: ${os}%0A` +
+                                  `Total: Rp ${formatRupiah(totalPrice)}%0A%0A` +
+                                  `Silakan berikan instruksi pembayaran.`;
+            
+            document.getElementById('whatsappLink').href = 
+                `https://wa.me/6288707511722?text=${whatsappMessage}`;
+            
+            // Show modal
+            document.getElementById('orderModal').classList.add('active');
+            
+            // Disable order button temporarily
+            const orderButton = document.getElementById('orderButton');
+            orderButton.disabled = true;
+            orderButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> MEMPROSES...';
+            
+            setTimeout(() => {
+                orderButton.disabled = false;
+                orderButton.innerHTML = '<i class="fas fa-shopping-cart"></i> PESAN SEKARANG';
+            }, 2000);
+        }
+
+        // Show Coming Soon
+        function showComingSoon(serviceName) {
+            currentComingSoonService = serviceName;
+            const data = comingSoonData[serviceName];
+            
+            if (data) {
+                document.getElementById('comingSoonTitle').textContent = data.title;
+                document.getElementById('comingSoonMessage').textContent = data.message;
+                document.getElementById('comingSoonEta').textContent = data.eta;
+                document.getElementById('comingSoonModal').classList.add('active');
+            }
+        }
+
+        // Notify Me function
+        function notifyMe(serviceName) {
+            const email = prompt(`Masukkan email Anda untuk mendapatkan notifikasi saat layanan ${serviceName} tersedia:`);
+            
+            if (email && validateEmail(email)) {
+                alert(`Terima kasih! Kami akan mengirimkan notifikasi ke ${email} saat layanan ${serviceName} sudah tersedia.`);
+                
+                // In production, you would send this to your backend
+                console.log(`Notification requested for ${serviceName} to email: ${email}`);
+            } else if (email) {
+                alert('Email tidak valid. Silakan masukkan email yang valid.');
+            }
+        }
+
+        // Notify Me from modal
+        function notifyMeModal() {
+            notifyMe(currentComingSoonService);
+            closeComingSoonModal();
+        }
+
+        // Setup Navigation
+        function setupNavigation() {
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const section = this.dataset.section;
+                    
+                    // Handle different sections
+                    if (section === 'vds' || section === 'rdp' || section === 'pentest') {
+                        // Show coming soon message
+                        showComingSoon(section.toUpperCase());
+                    } else {
+                        // Show actual section
+                        showSection(section);
+                    }
+                    
+                    // Update navigation active state
+                    navItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        }
+
+        // Open Ticket System
+        function openTicketSystem() {
+            alert("Sistem tiket sedang dalam pengembangan. Untuk saat ini, silakan hubungi kami via Telegram atau WhatsApp untuk bantuan teknis.");
+        }
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById('orderModal').classList.remove('active');
+        }
+
+        // Close Coming Soon Modal
+        function closeComingSoonModal() {
+            document.getElementById('comingSoonModal').classList.remove('active');
+        }
+
+        // Format Rupiah
+        function formatRupiah(number) {
+            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        // Validate Email
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // Update Time
+        function updateTime() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            document.getElementById('currentTime').textContent = 
+                `${hours}:${minutes}:${seconds}/SkyZhee`;
+        }
+
+        // Initialize time update
+        setInterval(updateTime, 1000);
+        
+        // Initialize duration options on page load
+        updateDurationOptions();
+        
+        // Close modal on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+                closeComingSoonModal();
+            }
+        });
+        
+        // Close modal when clicking outside
+        document.getElementById('orderModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+        
+        document.getElementById('comingSoonModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeComingSoonModal();
+            }
+        });
+    </script>
+</body>
+</html>
