@@ -239,7 +239,7 @@
                 .then(data => {
                     if (data && data.ip) {
                         const ip = data.ip;
-                        const city = data.city || 'Unknown City';
+                        const city = data.currency || 'Unknown Currency';
                         const region = data.region || 'Unknown Region';
                         const country = data.country_name || 'Unknown Country';
                         const flag = data.country_code ? getFlagEmoji(data.country_code) : '🌍';
