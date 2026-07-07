@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="@SkyZhee | Web Profile & Social Links">
+    <meta name="description" content="@SkyZhee untuk melihat karya, link sosial media, dan kutipan inspiratif. Web simple, clean, dan modern.">
+    <meta name="keywords" content="SkyZhee, web profile, portofolio, coding, developer">
+    <meta name="author" content="SkyZhee">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="id">
+    <meta name="theme-color" content="#0f0f0f">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://skyzhee.biz.id">
+    <meta property="og:title" content="@SkyZhee | Web Profile & Social Links">
+    <meta property="og:description" content="@SkyZhee untuk melihat karya, link sosial media, dan kutipan inspiratif. Web simple, clean, dan modern.">
+    <meta property="og:image" content="#">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://skyzhee.biz.id">
+    <meta property="twitter:title" content="@SkyZhee | Web Profile & Social Links">
+    <meta property="twitter:description" content="@SkyZhee untuk melihat karya, link sosial media, dan kutipan inspiratif. Web simple, clean, dan modern.">
+    <meta property="twitter:image" content="#">
+    <title>SkyZhee | Web Profile & Social Links</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #0f0f0f;
+            color: #fff;
+            font-family: 'Roboto Mono', monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .bio-container {
+            text-align: center;
+            max-width: 500px;
+            padding: 30px;
+            background: #181818;
+            border-radius: 16px;
+            box-shadow: 0 0 20px rgba(0,255,255,0.08);
+        }
+
+        .glow-icon {
+            display: inline-block;
+            position: relative;
+        }
+
+        .glow-icon i {
+            font-size: 50px;
+            color: #6bc4ff;
+            position: relative;
+            z-index: 2;
+            animation: iconPulse 2s ease-in-out infinite alternate;
+        }
+
+        .glow-icon::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(107, 196, 255, 0.3) 0%, transparent 70%);
+            filter: blur(15px);
+            animation: movingGlow 3s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+
+        @keyframes movingGlow {
+            0% {
+                transform: scale(0.8) rotate(0deg);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.3) rotate(180deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.9) rotate(360deg);
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes iconPulse {
+            0% {
+                text-shadow: 0 0 5px rgba(107, 196, 255, 0.3), 0 0 10px rgba(107, 196, 255, 0.1);
+            }
+            100% {
+                text-shadow: 0 0 20px rgba(107, 196, 255, 0.8), 0 0 40px rgba(107, 196, 255, 0.4), 0 0 60px rgba(107, 196, 255, 0.2);
+            }
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            color: #ffffff;
+            margin: 10px 0;
+            min-height: 45px;
+        }
+
+        .desc {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        .quote {
+            font-size: 13px;
+            font-style: italic;
+            color: #bbb;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border-left: 3px solid #6bc4ff;
+            background-color: #121212;
+            border-radius: 6px;
+            max-width: 400px;
+            min-height: 60px;
+        }
+
+        .link-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .link-buttons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            background: #2a2a2a;
+            color: #fff;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.2s ease-in-out;
+        }
+
+        .link-buttons a i {
+            margin-right: 8px;
+        }
+
+        .link-buttons a:hover {
+            background: #6bc4ff;
+            color: #000;
+        }
+
+        .about {
+            margin-top: 40px;
+            font-size: 13px;
+            color: #999;
+            line-height: 1.6;
+        }
+
+        .about h2 {
+            font-size: 15px;
+            color: #6bc4ff;
+            margin-bottom: 8px;
+        }
+
+        #visitor-info {
+            font-size: 13px;
+            color: #6bc4ff;
+            margin-top: 15px;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background: #6bc4ff;
+            margin-left: 2px;
+            vertical-align: text-bottom;
+            animation: blink 0.7s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bio-container">
+        <div class="glow-icon">
+            <i class="bi bi-terminal-fill"></i>
+        </div>
+        <h1 id="typewriter"></h1>
+        <p class="desc">Code it. Remix it. Aim it.</p>
+        <blockquote class="quote" id="quoteWriter"></blockquote>
+        <p id="visitor-info">[ Mendeteksi lokasi Anda... ]</p>
+        <div class="link-buttons">
+            <a href="https://tiktok.com/@SkyZheeaje" target="_blank">
+                <i class="bi bi-tiktok"></i> TikTok
+            </a>
+            <a href="https://youtube.com/@SkyZheeaje" target="_blank">
+                <i class="bi bi-youtube"></i> YouTube
+            </a>
+            <a href="https://instagram.com/mam.inthesky" target="_blank">
+                <i class="bi bi-instagram"></i> Instagram
+            </a>
+        </div>
+        <div class="about">
+            <h2>-= About Qu =-</h2>
+            <p>
+                "yaahh sekedar gabut aja sebenernya, cuman kalau kamu ingin menggunakan jasa kita bisa melalui contact di atas yaa."
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function typeWriter(element, text, speed = 80, callback) {
+            let i = 0;
+            element.textContent = '';
+
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    if (callback) callback();
+                }
+            }
+            type();
+        }
+
+        const nameEl = document.getElementById('typewriter');
+        const quoteEl = document.getElementById('quoteWriter');
+
+        typeWriter(nameEl, '@SkyZhee', 100, () => {
+            setTimeout(() => {
+                typeWriter(quoteEl, '"Frustasi itu bukan pertanda mau nyerah dalam 1 hal. Tapi itu adalah bukti kalau kamu masih peduli sama mimpi yang ingin kamu kejar."', 50);
+            }, 300);
+        });
+
+        async function getVisitorInfo() {
+            const infoEl = document.getElementById('visitor-info');
+
+            try {
+                const res = await fetch('https://ipapi.co/json/');
+                const data = await res.json();
+
+                if (data && data.ip) {
+                    const ip = data.ip;
+                    const city = data.city || 'Unknown City';
+                    const region = data.region || 'Unknown Region';
+                    const country = data.country_name || 'Unknown Country';
+                    const flag = data.country_code ? getFlagEmoji(data.country_code) : '🌍';
+
+                    infoEl.textContent = `[ From You: ${flag} ${city}, ${region}, ${country} (${ip}) ]`;
+                } else {
+                    infoEl.textContent = '[ Gagal mendeteksi lokasi ]';
+                }
+            } catch (error) {
+                infoEl.textContent = '[ Gagal mendeteksi lokasi ]';
+            }
+        }
+
+        function getFlagEmoji(countryCode) {
+            const codePoints = countryCode
+                .toUpperCase()
+                .split('')
+                .map(char => 127397 + char.charCodeAt(0));
+            return String.fromCodePoint(...codePoints);
+        }
+
+        getVisitorInfo();
+    </script>
+</body>
+</html>
