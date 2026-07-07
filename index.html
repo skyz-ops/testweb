@@ -171,16 +171,6 @@
             margin-top: 15px;
         }
 
-        .typing-cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1em;
-            background: #6bc4ff;
-            margin-left: 2px;
-            vertical-align: text-bottom;
-            animation: blink 0.7s step-end infinite;
-        }
-
         @keyframes blink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
@@ -241,27 +231,27 @@
             }, 300);
         });
 
-        async function getVisitorInfo() {
+        function getVisitorInfo() {
             const infoEl = document.getElementById('visitor-info');
-
-            try {
-                const res = await fetch('https://ipapi.co/json/');
-                const data = await res.json();
-
-                if (data && data.ip) {
-                    const ip = data.ip;
-                    const city = data.city || 'Unknown City';
-                    const region = data.region || 'Unknown Region';
-                    const country = data.country_name || 'Unknown Country';
-                    const flag = data.country_code ? getFlagEmoji(data.country_code) : '🌍';
-
-                    infoEl.textContent = `[ From You: ${flag} ${city}, ${region}, ${country} (${ip}) ]`;
-                } else {
+            
+            fetch('https://ipapi.co/json/')
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.ip) {
+                        const ip = data.ip;
+                        const city = data.city || 'Unknown City';
+                        const region = data.region || 'Unknown Region';
+                        const country = data.country_name || 'Unknown Country';
+                        const flag = data.country_code ? getFlagEmoji(data.country_code) : '🌍';
+                        
+                        infoEl.textContent = `[ From You: ${flag}, ${region}, ${country} (${ip}) ]`;
+                    } else {
+                        infoEl.textContent = '[ Gagal mendeteksi lokasi ]';
+                    }
+                })
+                .catch(() => {
                     infoEl.textContent = '[ Gagal mendeteksi lokasi ]';
-                }
-            } catch (error) {
-                infoEl.textContent = '[ Gagal mendeteksi lokasi ]';
-            }
+                });
         }
 
         function getFlagEmoji(countryCode) {
